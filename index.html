@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shark AI 🦈</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #101827;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .chat {
+            width: 90%;
+            max-width: 500px;
+            background: #182235;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        #mensagens {
+            height: 400px;
+            overflow-y: auto;
+            background: #0d1422;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .mensagem {
+            margin: 10px 0;
+        }
+
+        .voce {
+            color: #7dd3fc;
+        }
+
+        .shark {
+            color: #67e8f9;
+        }
+
+        .entrada {
+            display: flex;
+            gap: 8px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="chat">
+
+    <h1>🦈 Shark AI</h1>
+
+    <div id="mensagens">
+        <div class="mensagem shark">
+            <b>Shark AI:</b> Oi! Eu sou a Shark AI. Como posso ajudar?
+        </div>
+    </div>
+
+    <div class="entrada">
+        <input id="entrada" type="text" placeholder="Digite uma mensagem...">
+        <button onclick="enviar()">Enviar</button>
+    </div>
+
+</div>
+
+<script>
+
+function responder(mensagem) {
+
+    let texto = mensagem.toLowerCase().trim();
+
+    if (texto === "sair") {
+        return "Até mais! 🦈";
+
+    } else if (texto.includes("quem")) {
+        return "Eu sou a Shark AI, uma IA criada por você! 🦈";
+
+    } else if (texto.includes("meu nome")) {
+        return "Prazer em te conhecer! 😎";
+
+    } else if (texto.includes("qual") && texto.includes("nome")) {
+        return "Eu sou a Shark AI! 🦈";
+
+    } else if (texto.includes("oi") || texto.includes("olá") || texto.includes("ola")) {
+        return "Oi! Tudo bem? 😎";
+
+    } else if (texto.includes("tudo bem")) {
+        return "Tudo ótimo! 🦈";
+
+    } else if (texto.includes("minecraft")) {
+        return "Minecraft é um jogo de construção e sobrevivência! ⛏️";
+
+    } else if (texto.includes("roblox")) {
+        return "Roblox tem milhares de experiências! 🎮";
+
+    } else if (texto.includes("matemática") || texto.includes("matematica")) {
+        return "Posso tentar ajudar com matemática! 📚";
+
+    } else if (texto.includes("obrigado") || texto.includes("valeu")) {
+        return "De nada! 😎";
+
+    } else {
+        return "Ainda estou aprendendo! 🧠";
+    }
+}
+
+function enviar() {
+
+    let entrada = document.getElementById("entrada");
+    let mensagem = entrada.value.trim();
+
+    if (mensagem === "") {
+        return;
+    }
+
+    let mensagens = document.getElementById("mensagens");
+
+    mensagens.innerHTML +=
+        '<div class="mensagem voce"><b>Você:</b> ' +
+        mensagem +
+        '</div>';
+
+    let resposta = responder(mensagem);
+
+    mensagens.innerHTML +=
+        '<div class="mensagem shark"><b>Shark AI:</b> ' +
+        resposta +
+        '</div>';
+
+    entrada.value = "";
+
+    mensagens.scrollTop = mensagens.scrollHeight;
+}
+
+document.getElementById("entrada").addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        enviar();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
